@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="title">
+      User Data
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="row-wrapper">
+      <div class="box subtitle">
+        Name:
+      </div>
+      <input [(ngModel)]="data.name" placeholder="Enter your name" class="box input-field">
+      <div *ngIf="nameAlert" class="box alert">
+        Invalid Character!
+      </div>
+    </div>
+    <div class="row-wrapper">
+      <div class="box subtitle">
+        Surname:
+      </div>
+      <input [(ngModel)]="data.surname" placeholder="Enter your surname" class="box input-field">
+      <div *ngIf="surnameAlert" class="box alert">
+        Invalid Character!
+      </div>
+    </div>
+    <div class="row-wrapper">
+      <div class="box subtitle">
+        Age:
+      </div>
+      <input [(ngModel)]="data.age" placeholder="Enter your age" class="box input-field">
+      <div *ngIf="ageAlert" class="box alert">
+        Invalid Character!
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div *ngIf="inviteAlert" class="invite-alert">Hello {{data.name}} {{data.surname}}</div>
+  </div>
+  <div class="wrapper center">
+    <div class="save-button">Save</div>
+  </div>
+</div>
