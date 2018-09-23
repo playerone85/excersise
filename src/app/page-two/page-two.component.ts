@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../data.service';
 import {Data} from './../data';
 
 @Component({
@@ -8,23 +9,25 @@ import {Data} from './../data';
 })
 export class PageTwoComponent implements OnInit {
 
-  inviteAlert = false;
   accessGranted = false;
   ageAlert = false;
-  data: Data = {
-    name: '',
-    surname: '',
-    age: null
-  };
+  data: Data;
 
-  constructor() { }
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
-    this.data.age = 20;
+    this.dataService.load()
+      .subscribe((data: Data) => {
+        console.log(data);
+        this.data = data;
+      }, error => {
+        console.error(error);
+      });
   }
 
   accessClick() {
-    if (this.data.age > 18) {
+    if (this.data && this.data.age > 18) {
       this.accessGranted = true;
     } else {
       this.ageAlert = true;

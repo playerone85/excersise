@@ -1,17 +1,20 @@
 <div class="container">
-  <div *ngIf="inviteAlert" class="wrapper">
-    <div class="invite-alert">{{data.name}} {{data.surname}}'s Page</div>
-  </div>
-  <div class="wrapper center">
-    <div class="save-button access" (click)="accessClick()">Access</div>
-  </div>
-  <div *ngIf="accessGranted" class="wrapper center">
-    <div class="img-box">
+  <div *ngIf="data" class="wrapper start">
+    <div class="wrapper">
+      <div class="invite-alert">{{data.name}} {{data.surname}}'s Page</div>
+    </div>
+    <div class="wrapper center">
+      <div class="save-button access" (click)="accessClick()">Access</div>
+    </div>
+    <div *ngIf="accessGranted" class="wrapper center">
+      <div class="img-box">
+      </div>
+    </div>
+    <div *ngIf="ageAlert" class="wrapper center">
+      <div class="alert-box">
+        You must be at least 18 years old!
+      </div>
     </div>
   </div>
-  <div *ngIf="ageAlert" class="wrapper center">
-    <div class="alert-box">
-      You must be at least 18 years old! 
-    </div>
-  </div>
+  <div *ngIf="!data" class="wrapper center">Your data is missing!</div>
 </div>

@@ -1,42 +1,44 @@
 <div class="container">
-  <div class="wrapper">
-    <div class="title">
-      User Data
-    </div>
-  </div>
-  <div class="wrapper">
-    <div class="row-wrapper">
-      <div class="box subtitle">
-        Name:
-      </div>
-      <input [(ngModel)]="data.name" placeholder="Enter your name" class="box input-field">
-      <div *ngIf="nameAlert" class="box alert">
-        Invalid Character!
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit();">
+    <div class="wrapper">
+      <div class="title">
+        User Data
       </div>
     </div>
-    <div class="row-wrapper">
-      <div class="box subtitle">
-        Surname:
+    <div class="wrapper">
+      <div class="row-wrapper">
+        <div class="box subtitle">
+          Name:
+        </div>
+        <input placeholder="Enter your name" class="box input-field" formControlName="name" required>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="box alert">
+          Invalid Character!
+        </div>
       </div>
-      <input [(ngModel)]="data.surname" placeholder="Enter your surname" class="box input-field">
-      <div *ngIf="surnameAlert" class="box alert">
-        Invalid Character!
+      <div class="row-wrapper">
+        <div class="box subtitle">
+          Surname:
+        </div>
+        <input placeholder="Enter your surname" class="box input-field" formControlName="surname" required>
+        <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="box alert">
+          Invalid Character!
+        </div>
+      </div>
+      <div class="row-wrapper">
+        <div class="box subtitle">
+          Age:
+        </div>
+        <input placeholder="Enter your age" class="box input-field" formControlName="age" required>
+        <div *ngIf="age.invalid && (age.dirty || age.touched)" class="box alert">
+          Invalid Character!
+        </div>
       </div>
     </div>
-    <div class="row-wrapper">
-      <div class="box subtitle">
-        Age:
-      </div>
-      <input [(ngModel)]="data.age" placeholder="Enter your age" class="box input-field">
-      <div *ngIf="ageAlert" class="box alert">
-        Invalid Character!
-      </div>
+    <div class="wrapper center">
+      <div *ngIf="dataForm.valid" class="invite-alert">Hello {{name.value}} {{surname.value}}!</div>
     </div>
-  </div>
-  <div class="wrapper">
-    <div *ngIf="inviteAlert" class="invite-alert">Hello {{data.name}} {{data.surname}}</div>
-  </div>
-  <div class="wrapper center">
-    <div class="save-button">Save</div>
-  </div>
+    <div class="wrapper center">
+      <button type="submit" class="save-button" [disabled]="!dataForm.valid">Save</button>
+    </div>
+  </form>
 </div>
